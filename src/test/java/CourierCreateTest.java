@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static ru.yandex.practikum.generator.CourierRequestGenerator.getRandomCourierRequest;
 
 
-public class CreateCourierTest {
+public class CourierCreateTest {
 
     private CourierClient courierClient;
     private CourierRequest courierRequest;
@@ -35,17 +35,17 @@ public class CreateCourierTest {
                 .extract()
                 .path("id");
 
-        // удалим созданную учетную запись
-        if (id != null) {
-
-            DeleteRequest deleteRequest = new DeleteRequest(id);
-
-            courierClient.deleteCourier(deleteRequest)
-                    .assertThat()
-                    .statusCode(SC_OK)
-                    .and()
-                    .body("ok", equalTo(true));
-        }
+//        // удалим созданную учетную запись
+//        if (id != null) {
+//
+//            DeleteRequest deleteRequest = new DeleteRequest(id);
+//
+//            courierClient.deleteCourier(deleteRequest)
+//                    .assertThat()
+//                    .statusCode(SC_OK)
+//                    .and()
+//                    .body("ok", equalTo(true));
+//        }
     }
 
     @Test

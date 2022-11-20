@@ -5,7 +5,7 @@ public class DeleteRequest {
     private String id;
 
     public DeleteRequest(Integer id) {
-        this.id = Integer.toString(id);
+        this.id = (id != null ? Integer.toString(id) : "");
     }
 
     public String getId() {

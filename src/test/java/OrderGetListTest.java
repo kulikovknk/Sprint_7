@@ -1,26 +1,18 @@
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.Before;
 import org.junit.Test;
-import ru.yandex.practikum.client.OrderClient;
 
-import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-public class GetOrderListTest {
-
-    private OrderClient orderClient;
-
-    @Before
-    public void setUp() {
-        orderClient = new OrderClient();
-    }
+public class OrderGetListTest extends OrderBaseTest{
 
     @Test
     @DisplayName("Check order list can be received")
     //    в тело ответа возвращается список заказов
     public void getOrderListTest() {
 
-        orderClient.getOrderList()
+        getOrderList()
+                .log().all()
                 .assertThat()
                 .statusCode(SC_OK)
                 .and()

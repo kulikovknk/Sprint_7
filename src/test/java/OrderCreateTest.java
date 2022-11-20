@@ -1,11 +1,8 @@
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
+import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.yandex.practikum.client.OrderClient;
-import ru.yandex.practikum.dto.OrderRequest;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -14,7 +11,7 @@ import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 @RunWith(Parameterized.class)
-public class CreateOrderTest {
+public class OrderCreateTest extends OrderBaseTest {
 
     private static final String[] ORDER_COLOR_GREY_BLACK = {"GREY", "BLACK"};
     private static final String[] ORDER_COLOR_GREY = {"GREY"};
@@ -94,25 +91,13 @@ public class CreateOrderTest {
     @Parameterized.Parameter(8)
     public String[] color;
 
-    private OrderClient orderClient;
-
-    @Before
-    public void setUp() {
-        orderClient = new OrderClient();
-    }
-
-    @After
-    public void tearDown() {
-
-    }
-
     @Test
     @DisplayName("Check new order can be opened")
     //  заказ создается
     //  тело ответа содержит track
     public void openNewOrderTest() {
 
-        OrderRequest orderRequest = new OrderRequest(firstName,
+        createOrder(firstName,
                 lastName,
                 address,
                 metroStation,
@@ -122,13 +107,6 @@ public class CreateOrderTest {
                 comment,
                 color);
 
-
-        orderClient.createOrder(orderRequest)
-                .assertThat()
-                .statusCode(SC_CREATED)
-                .and()
-                .body("track", notNullValue());
-
-    }
+     }
 
 }
