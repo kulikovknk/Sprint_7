@@ -34,10 +34,10 @@ public class OrderAcceptTest extends OrderBaseTest {
 //                        "2022-10-15",
 //                        "no",
 //                        ORDER_COLOR_BLACK},
-                {"Name" + new Random().nextInt(200),
-                        "lastName" + new Random().nextInt(200),
-                        "Moskva",
-                        "Luzhniki",
+                {"Имя" + new Random().nextInt(200),
+                        "Фамилия" + new Random().nextInt(200),
+                        "Москва",
+                        "Черкизовская",
                         "+79111234577",
                         3,
                         "2022-10-12",
@@ -107,7 +107,7 @@ public class OrderAcceptTest extends OrderBaseTest {
                 comment,
                 color);
 
-        ValidatableResponse orderAcceptanceResponse = acceptOrder(orderID, courierId);
+        ValidatableResponse orderAcceptanceResponse = acceptOrder("391588", courierId);
 
         orderAcceptanceResponse.assertThat()
                 .log().all()
